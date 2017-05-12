@@ -2,9 +2,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_total = @order.total_cents/100.00
     @items = LineItem.where(order_id: @order.id)
     @email = @order.email
+    UserMailer.receipt_email(@order).deliver_now
   end
 
   def create
