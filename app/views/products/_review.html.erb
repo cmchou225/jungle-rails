@@ -1,0 +1,13 @@
+<div class="row">
+  <dl class="dl-horizontal">
+    <dd>Reviewer: <%= review.user.first_name %>
+    <dd>Rating: <%= review.rating %></dd>
+    <dd>Review: <%= review.description %></dd>
+    <% if (current_user && current_user.id == review.user_id) %>
+      <dd><%= link_to fa_icon('trash'), review_path(review), class: 'btn btn-sm btn-danger',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+      </dd>
+    <% end %>
+  </dl>
+</div>
